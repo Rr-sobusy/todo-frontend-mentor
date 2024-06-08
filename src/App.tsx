@@ -15,8 +15,8 @@ function App() {
     <>
       <LayoutWrapper>
         <ul>
-          <li onClick={()=>setTheme("light")} className="py-1 border">light</li>
-          <li onClick={()=>setTheme("dark")} className="py-1 border">dark</li>
+          <li onClick={()=>setTheme("light")} className="py-1">light</li>
+          <li onClick={()=>setTheme("dark")} className="py-1">dark</li>
         </ul>
       </LayoutWrapper>
     </>

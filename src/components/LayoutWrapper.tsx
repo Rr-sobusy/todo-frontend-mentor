@@ -20,7 +20,7 @@ const backGrounds = {
 const LayoutWrapper = ({ children, isDarkMode, isPhone, ...props }: WrapperProps) => {
 
     return (
-        <main {...props} className={`flex flex-col  min-h-screen bg-background dark:bg-foreground`}>
+        <main {...props} className={`flex flex-col  min-h-screen bg-background`}>
             <img className="w-screen h-1/2" src={backGrounds["darkMobile"]} alt="" />
             {children}
         </main>
