@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
-function App() {
- 
-  const isPhone = useMediaQuery({maxWidth : 640})
+import LayoutWrapper from './components/LayoutWrapper'
 
-  console.log(isPhone)
+import { useTheme } from './providers/ThemeProvider'
+
+function App() {
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    console.log(theme)
+  }, [theme])
   return (
-   <>
-   <p className={`${isPhone} && 'text-red-500'`}>rex</p>
-   </>
+    <>
+      <LayoutWrapper>
+        <ul>
+          <li onClick={()=>setTheme("light")} className="py-1 border">light</li>
+          <li onClick={()=>setTheme("dark")} className="py-1 border">dark</li>
+        </ul>
+      </LayoutWrapper>
+    </>
   )
 }
 
