@@ -7,12 +7,9 @@ import { useTheme } from './providers/ThemeProvider'
 
 function App() {
   const { theme, setTheme } = useTheme();
+  const isDarkMode = theme === "dark"
   const isPhone = useMediaQuery({ maxWidth: 640 })
 
-  const isDarkMode = theme === "dark"
-  useEffect(() => {
-    console.log(isDarkMode)
-  }, [theme])
 
 
   return (
