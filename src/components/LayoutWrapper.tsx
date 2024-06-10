@@ -16,26 +16,17 @@ interface WrapperProps {
     className?: string
 }
 
-const backGrounds = {
-    darkMobile: DarkMobile,
-    darkDesktop: DarkDesktop,
-    lightMobile: LightMobile,
-    lightDesktop: LighDesktop
-}
-
 const LayoutWrapper = ({ children, isDarkMode, isPhone, className, ...props }: WrapperProps) => {
-
     const backGround = () => {
         if (isDarkMode && isPhone)
-            return backGrounds["darkMobile"];
+            return DarkMobile;
         if (isDarkMode && !isPhone)
-            return backGrounds["darkDesktop"];
+            return DarkDesktop;
         if (!isDarkMode && isPhone)
-            return backGrounds["lightMobile"];
+            return LightMobile;
         if (!isDarkMode && !isPhone)
-            return backGrounds["lightDesktop"]
+            return LighDesktop
     }
-
     return (
         <main {...props}
             className={cn(`flex flex-col items-center min-h-screen ${isDarkMode ? 'bg-foreground' : 'bg-background'}`, className)}>
