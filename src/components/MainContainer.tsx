@@ -16,7 +16,7 @@ const MainContainer = ({ isDarkMode, toggleTheme }: MainContainerProps) => {
   const Icon = isDarkMode ? Sun : Moon
 
   return (
-    <div className="w-[85%] md:max-w-[500px] mx-auto absolute top-[6rem]">
+    <div className="w-[90%] md:max-w-[550px] mx-auto absolute top-[5rem]">
 
       {/* **** Header ***** */}
       <div className="flex justify-between items-center">
@@ -25,6 +25,13 @@ const MainContainer = ({ isDarkMode, toggleTheme }: MainContainerProps) => {
       </div>
 
       {/******** Add todo input ****** */}
+      <div className={`mt-7 h-12 pl-4 flex relative gap-3 items-center rounded-md`}>
+        <div className={`h-6 w-6 rounded-full absolute z-20 border ${isDarkMode ? 'border-backgroundAccent' : 'border-foregroundAccent'}`}></div>
+        <input placeholder='Enter new todo. . .' className={`absolute rounded-md left-0 h-full w-full pl-12 z-10 top-0 ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`} type="text" />
+      </div>
+
+      {/* ****** Todo Container ******/}
+      <SimpleBar></SimpleBar>
     </div>
   )
 }
