@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import LayoutWrapper from './components/LayoutWrapper'
+import MainContainer from './components/MainContainer'
 
 import { useTheme } from './providers/ThemeProvider'
 
@@ -11,14 +12,15 @@ function App() {
   const isPhone = useMediaQuery({ maxWidth: 640 })
 
 
+  const toggleTheme = () => {
+    theme === "dark" ? setTheme("light") : setTheme("dark")
+
+  }
 
   return (
     <>
       <LayoutWrapper isPhone={isPhone} isDarkMode={isDarkMode}>
-        <ul>
-          <li onClick={() => setTheme("light")} className="py-1">light</li>
-          <li onClick={() => setTheme("dark")} className="py-1">dark</li>
-        </ul>
+        <MainContainer isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       </LayoutWrapper>
     </>
   )
