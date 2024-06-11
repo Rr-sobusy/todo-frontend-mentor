@@ -5,12 +5,15 @@ import 'simplebar-react/dist/simplebar.min.css';
 import './index.css'
 
 // Providers
-import { ThemeProvider } from './providers/ThemeProvider.tsx'
+import { ThemeProvider } from './providers/ThemeProvider.tsx';
+import { TodosProvider } from './providers/TodoProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme='light' storageKey="vite-ui-theme">
-      <App />
+      <TodosProvider>
+        <App />
+      </TodosProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )
