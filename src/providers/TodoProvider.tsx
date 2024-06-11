@@ -5,11 +5,10 @@ type Actions = {
     payload: Todo
 } | {
     type: "remove_todo",
-    payload: number
+    payload: string // todo_id
 }
-
-type Todo = {
-    id: number
+export type Todo = {
+    id: string
     todoTitle: string
     isCompleted: boolean
 }
@@ -25,8 +24,8 @@ interface TodoProviderState {
 }
 
 const defaultTodos: Todo[] = [{
-    id: 0,
-    todoTitle: "Explore things",
+    id: "13asrar",
+    todoTitle: "Explore new things",
     isCompleted: false
 }]
 
@@ -34,11 +33,12 @@ const defaultTodos: Todo[] = [{
 const reducer = (state: Todo[], action: Actions): Todo[] => {
     switch (action.type) {
         case "create_todo":
-            return [...state, action.payload];
+            return [action.payload, ...state];
+        case "remove_todo":
+            return state.filter((todos) => todos.id !== action.payload);
         default:
             return [...state];
     }
-
 }
 
 
@@ -54,9 +54,9 @@ export function TodosProvider({ children, storageKey = "vite-todo" }: TodosProvi
         return storage ? JSON.parse(storage) : defaultTodos;
     });
 
-    useEffect(()=>{
-
-    },[])
+    useEffect(() => {
+        localStorage.setItem(storageKey, JSON.stringify(todos))
+    }, [todos])
 
     const value = {
         todos,
