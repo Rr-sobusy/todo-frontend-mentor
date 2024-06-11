@@ -1,4 +1,4 @@
-import React, { Dispatch, createContext, useContext, useReducer } from "react";
+import React, { Dispatch, createContext, useContext, useEffect, useReducer } from "react";
 
 type Actions = {
     type: "create_todo",
@@ -45,7 +45,19 @@ const reducer = (state: Todo[], action: Actions): Todo[] => {
 const TodoProviderContext = createContext<TodoProviderState>({ todos: defaultTodos, dispatcher: () => null })
 
 export function TodosProvider({ children, storageKey = "vite-todo" }: TodosProviderProps) {
-    const [todos, dispatcher] = useReducer(reducer, ()=>defaultTodos )
+
+    /**
+     * Create an instance of local storage. 
+     */
+    const [todos, dispatcher] = useReducer(reducer, [], () => {
+        const storage = localStorage.getItem(storageKey);
+        return storage ? JSON.parse(storage) : defaultTodos;
+    });
+
+    useEffect(()=>{
+
+    },[])
+
     const value = {
         todos,
         dispatcher
@@ -62,7 +74,7 @@ export const useTodos = () => {
 
     if (todoContext === undefined)
         throw new Error("useTodos must me used within the context");
-    return {todoContext}
+    return { todoContext }
 }
 
 
