@@ -1,4 +1,3 @@
-import React from 'react';
 import SimpleBar from 'simplebar-react'
 import type { Todo } from '@/providers/TodoProvider';
 
