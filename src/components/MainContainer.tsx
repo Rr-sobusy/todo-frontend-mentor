@@ -1,5 +1,9 @@
+import React, { useState } from 'react';
 import SimpleBar from 'simplebar-react'
 import type { Todo } from '@/providers/TodoProvider';
+
+// framer motion
+import { Reorder } from 'framer-motion'
 
 // icons
 import Sun from '../assets/icon-sun.svg';
@@ -16,14 +20,14 @@ type MainContainerProps = {
   handleSubmitTodo: () => void
   handleUpdateTodo: (id: string) => void;
   handleInputChange: (event: string) => void
+  handleReorder : any
   inputtedText: string
 }
 
-const MainContainer = ({ isDarkMode, toggleTheme, todos = [], handleRemoveTodo, handleSubmitTodo, handleUpdateTodo, handleInputChange, inputtedText }: MainContainerProps) => {
+const MainContainer = ({ isDarkMode, toggleTheme, todos = [], handleRemoveTodo, handleSubmitTodo, handleUpdateTodo, handleInputChange,handleReorder, inputtedText }: MainContainerProps) => {
 
   const Icon = isDarkMode ? Sun : Moon;
 
-  
   return (
     <div className="w-[90%] md:max-w-[550px] mx-auto absolute top-[3rem]">
 
@@ -44,21 +48,30 @@ const MainContainer = ({ isDarkMode, toggleTheme, todos = [], handleRemoveTodo, 
 
 
       <SimpleBar className={`rounded-md w-full md:h-[350px] h-[550px] mt-7 ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
-        {
-          todos.map((todo, index) => {
-            return (
-              <div key={index} className={`h-12 flex gap-3 text-sm font-medium font-sans items-center border-b px-3 ${isDarkMode ? 'text-background border-slate-600' : 'text-foreground border-slate-200'}`}>
-                <div onClick={() => handleUpdateTodo(todo.id)} className={`h-5 w-5 rounded-full cursor-pointer flex justify-center items-center ${isDarkMode ? 'border border-slate-700' : 'border border-slate-200'} ${todo.isCompleted && 'bg-gradient-to-b'} from-blue-300 to-indigo-500`}>
-                  {
-                    todo.isCompleted && <img width={9} height={9} className='object-contain' src={Check} alt="" />
-                  }
+        <Reorder.Group values={todos} onReorder={(e)=>handleReorder(e)}>
+          {
+             todos.map((todo, index) => {
+              return (
+               <Reorder.Item key={todo.id} value={todo}>
+                 <div key={index} className={`h-12 flex gap-3 text-sm font-medium font-sans items-center border-b px-3 ${isDarkMode ? 'text-background border-slate-600' : 'text-foreground border-slate-200'}`}>
+                  <div onClick={() => handleUpdateTodo(todo.id)} className={`h-5 w-5 rounded-full cursor-pointer flex justify-center items-center ${isDarkMode ? 'border border-slate-700' : 'border border-slate-200'} ${todo.isCompleted && 'bg-gradient-to-b'} from-blue-200 to-indigo-600`}>
+                    {
+                      todo.isCompleted && <img width={9} height={9} className='object-contain' src={Check} alt="" />
+                    }
+                  </div>
+                  <p>{todo.todoTitle}</p>
+                  <img onClick={() => handleRemoveTodo(todo.id)} width={11} height={11} className="absolute cursor-pointer right-5" src={Close} alt="" />
                 </div>
-                <p>{todo.todoTitle}</p>
-                <img onClick={() => handleRemoveTodo(todo.id)} width={11} height={11} className="absolute right-5 cursor-pointer" src={Close} alt="" />
-              </div>
-            )
-          })
-        }
+               </Reorder.Item>
+              )
+            })
+          }
+          {/* {
+            sampleState.map((v)=><Reorder.Item value={v} key={v}>
+              <p className='py-2 text-lg border-b'>{v}</p>
+            </Reorder.Item>)
+          } */}
+        </Reorder.Group>
       </SimpleBar>
     </div>
   )

@@ -9,6 +9,9 @@ type Actions = {
 } | {
     type: "update_todo",
     payload: string //todo_id
+} | {
+    type : "reorder",
+    payload : any
 }
 export type Todo = {
     id: string
@@ -48,6 +51,8 @@ const reducer = (state: Todo[], action: Actions): Todo[] => {
             }
             return currentState;
         }
+        case "reorder": 
+                return action.payload
         default:
             return state;
     }

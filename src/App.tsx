@@ -27,11 +27,11 @@ function App() {
     setInputtedText(e);
   }
 
-  const handleUpdateTodo = (e:string) =>{
-      todos.dispatcher({
-        type: "update_todo",
-        payload : e
-      })
+  const handleUpdateTodo = (e: string) => {
+    todos.dispatcher({
+      type: "update_todo",
+      payload: e
+    })
   }
 
   const handleRemoveTodo = (id: string) => {
@@ -51,6 +51,10 @@ function App() {
     }
   }
 
+  const handleReorder = (e: any) => {
+    todos.dispatcher({ type: "reorder", payload: e })
+  }
+
 
 
   return (
@@ -60,6 +64,7 @@ function App() {
         isDarkMode={isDarkMode}>
         <MainContainer
           handleUpdateTodo={handleUpdateTodo}
+          handleReorder={handleReorder}
           inputtedText={inputtedText}
           handleInputChange={handleInputChange}
           handleSubmitTodo={handleSubmitTodo}
