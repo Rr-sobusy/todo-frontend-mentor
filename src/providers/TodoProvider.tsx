@@ -85,7 +85,7 @@ export const useTodos = () => {
     const todoContext = useContext(TodoProviderContext);
 
     if (todoContext === undefined)
-        throw new Error("useTodos must me used within the context");
+        throw new Error("useTodos must be used within the child of TodoContextProvider");
     return { todoContext }
 }
 
