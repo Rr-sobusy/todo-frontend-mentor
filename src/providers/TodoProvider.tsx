@@ -11,7 +11,7 @@ type Actions = {
     payload: string //todo_id
 } | {
     type : "reorder",
-    payload : any
+    payload : Todo []
 }
 export type Todo = {
     id: string

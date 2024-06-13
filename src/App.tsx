@@ -3,7 +3,7 @@ import LayoutWrapper from './components/LayoutWrapper'
 import MainContainer from './components/MainContainer'
 
 // utils
-import { generateRandomId } from './lib/utils'
+import { generateRandomId } from './libs/utils'
 
 // contexts
 import { useTheme } from './providers/ThemeProvider'
@@ -23,21 +23,20 @@ function App() {
     theme === "dark" ? setTheme("light") : setTheme("dark")
   }
 
-  const handleInputChange = (e: string) => {
-    setInputtedText(e);
+  const handleInputChange = (inputtedString: string) => {
+    setInputtedText(inputtedString);
   }
 
-  const handleUpdateTodo = (e: string) => {
+  const handleUpdateTodo = (todo: string) => {
     todos.dispatcher({
       type: "update_todo",
-      payload: e
+      payload: todo
     })
   }
 
-  const handleRemoveTodo = (id: string) => {
-    todos.dispatcher({ type: "remove_todo", payload: id });
+  const handleRemoveTodo = (todoId: string) => {
+    todos.dispatcher({ type: "remove_todo", payload: todoId });
   }
-
 
   const handleSubmitTodo = () => {
     if (inputtedText) {
@@ -51,11 +50,9 @@ function App() {
     }
   }
 
-  const handleReorder = (e: any) => {
-    todos.dispatcher({ type: "reorder", payload: e })
+  const handleReorder = (newTodoListOrder: any) => {
+    todos.dispatcher({ type: "reorder", payload: newTodoListOrder })
   }
-
-
 
   return (
     <>
