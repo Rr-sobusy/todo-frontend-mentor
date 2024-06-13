@@ -27,10 +27,18 @@ function App() {
     setInputtedText(e);
   }
 
+  const handleUpdateTodo = (e:string) =>{
+      todos.dispatcher({
+        type: "update_todo",
+        payload : e
+      })
+  }
+
   const handleRemoveTodo = (id: string) => {
     todos.dispatcher({ type: "remove_todo", payload: id });
   }
-  
+
+
   const handleSubmitTodo = () => {
     if (inputtedText) {
       const payload = {
@@ -51,6 +59,7 @@ function App() {
         isPhone={isPhone}
         isDarkMode={isDarkMode}>
         <MainContainer
+          handleUpdateTodo={handleUpdateTodo}
           inputtedText={inputtedText}
           handleInputChange={handleInputChange}
           handleSubmitTodo={handleSubmitTodo}
