@@ -6,6 +6,9 @@ type Actions = {
 } | {
     type: "remove_todo",
     payload: string // todo_id
+} | {
+    type: "update_todo",
+    payload: string //todo_id
 }
 export type Todo = {
     id: string
@@ -36,8 +39,17 @@ const reducer = (state: Todo[], action: Actions): Todo[] => {
             return [action.payload, ...state];
         case "remove_todo":
             return state.filter((todos) => todos.id !== action.payload);
+        case "update_todo": {
+            const currentState = [...state];
+            const todoIndex = currentState.findIndex((todo) => todo.id === action.payload);
+            currentState[todoIndex] = {
+                ...currentState[todoIndex],
+                isCompleted: !currentState[todoIndex].isCompleted,
+            }
+            return currentState;
+        }
         default:
-            return [...state];
+            return state;
     }
 }
 
@@ -56,7 +68,7 @@ export function TodosProvider({ children, storageKey = "vite-todo" }: TodosProvi
 
     useEffect(() => {
         localStorage.setItem(storageKey, JSON.stringify(todos))
-    }, [todos])
+    }, [todos, storageKey])
 
     const value = {
         todos,

@@ -19,7 +19,6 @@ function App() {
 
   const { todoContext: todos } = useTodos();
 
-
   const toggleTheme = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark")
   }
@@ -31,6 +30,7 @@ function App() {
   const handleRemoveTodo = (id: string) => {
     todos.dispatcher({ type: "remove_todo", payload: id });
   }
+  
   const handleSubmitTodo = () => {
     if (inputtedText) {
       const payload = {
@@ -39,6 +39,7 @@ function App() {
         isCompleted: false
       }
       todos.dispatcher({ type: "create_todo", payload: payload })
+      setInputtedText("");
     }
   }
 
@@ -50,6 +51,7 @@ function App() {
         isPhone={isPhone}
         isDarkMode={isDarkMode}>
         <MainContainer
+          inputtedText={inputtedText}
           handleInputChange={handleInputChange}
           handleSubmitTodo={handleSubmitTodo}
           handleRemoveTodo={handleRemoveTodo}
