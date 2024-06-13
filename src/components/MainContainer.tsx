@@ -47,7 +47,7 @@ const MainContainer = ({ isDarkMode, toggleTheme, todos = [], handleRemoveTodo, 
         {
           todos.map((todo, index) => {
             return (
-              <div key={index} className={`h-10 flex gap-3 text-sm font-medium font-sans items-center border-b px-3 ${isDarkMode ? 'text-background border-slate-600' : 'text-foreground border-slate-200'}`}>
+              <div key={index} className={`h-12 flex gap-3 text-sm font-medium font-sans items-center border-b px-3 ${isDarkMode ? 'text-background border-slate-600' : 'text-foreground border-slate-200'}`}>
                 <div onClick={() => handleUpdateTodo(todo.id)} className={`h-5 w-5 rounded-full cursor-pointer flex justify-center items-center ${isDarkMode ? 'border border-slate-700' : 'border border-slate-200'} ${todo.isCompleted && 'bg-gradient-to-b'} from-blue-300 to-indigo-500`}>
                   {
                     todo.isCompleted && <img width={9} height={9} className='object-contain' src={Check} alt="" />
