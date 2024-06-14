@@ -19,7 +19,7 @@ type MainContainerProps = {
   handleSubmitTodo: () => void
   handleUpdateTodo: (id: string) => void;
   handleInputChange: (event: string) => void
-  handleReorder : any
+  handleReorder : (newTodoOrder: Todo [])=> void;
   inputtedText: string
 }
 
