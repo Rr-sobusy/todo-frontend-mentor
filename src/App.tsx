@@ -17,7 +17,7 @@ const randomIdlength = 7;
 function App() {
   const { theme, setTheme } = useTheme();
   const isDarkMode = theme === "dark"
-  const isPhone = useMediaQuery({ maxWidth: 640 })
+  const isPhone = useMediaQuery({ maxWidth: 768 })
 
   const [inputtedText, setInputtedText] = useState<string>("")
 
@@ -54,6 +54,10 @@ function App() {
     }
   }
 
+  const handleClearCompleted = () => {
+        todos.dispatcher({type : "clear_completed"})
+  }
+
   const handleReorder = (newTodoListOrder: Todo[]) => {
     todos.dispatcher({ type: "reorder", payload: newTodoListOrder })
   }
@@ -65,12 +69,14 @@ function App() {
         isDarkMode={isDarkMode}>
         <MainContainer
           handleUpdateTodo={handleUpdateTodo}
+          handleClearCompleted={handleClearCompleted}
           handleReorder={handleReorder}
           inputtedText={inputtedText}
           handleInputChange={handleInputChange}
           handleSubmitTodo={handleSubmitTodo}
           handleRemoveTodo={handleRemoveTodo}
           todos={todos.todos}
+          isPhone={isPhone}
           isDarkMode={isDarkMode}
           toggleTheme={toggleTheme} />
       </LayoutWrapper>

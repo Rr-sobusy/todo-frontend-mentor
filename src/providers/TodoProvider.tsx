@@ -1,5 +1,6 @@
 import React, { Dispatch, createContext, useContext, useEffect, useReducer } from "react";
 
+// handlers
 type Actions = {
     type: "create_todo",
     payload: Todo
@@ -10,8 +11,11 @@ type Actions = {
     type: "update_todo",
     payload: string //todo_id
 } | {
-    type : "reorder",
-    payload : Todo []
+    type: "clear_completed",
+    payload?: null;
+} | {
+    type: "reorder",
+    payload: Todo[]
 }
 export type Todo = {
     id: string
@@ -42,6 +46,8 @@ const reducer = (state: Todo[], action: Actions): Todo[] => {
             return [action.payload, ...state];
         case "remove_todo": // remove todo when click on X icon
             return state.filter((todos) => todos.id !== action.payload);
+        case "clear_completed":
+            return state.filter((todos) => !todos.isCompleted)
         case "update_todo": // modify isCompleted state in storage when clicked the rounded toggler button  
             {
                 const currentState = [...state];
