@@ -82,8 +82,8 @@ const MainContainer = (props: MainContainerProps) => {
           }
         </Reorder.Group>
       </SimpleBar>
-      <div className="h-12 px-4 flex justify-between items-center bg-backgroundAccent rounded-b-md">
-        <p className="text-[.75rem] font-medium font-sans">5 items remaining</p>
+      <div className={`h-12 px-4 flex justify-between items-center rounded-b-md ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
+        <p className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>5 items remaining</p>
         {
           !isPhone && <FilterableList tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         }
