@@ -85,9 +85,9 @@ const MainContainer = (props: MainContainerProps) => {
       <div className={`h-12 px-4 flex justify-between items-center rounded-b-md ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
         <p className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>5 items remaining</p>
         {
-          !isPhone && <FilterableList tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+          !isPhone && <FilterableList isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         }
-        <p onClick={handleClearCompleted} className="text-[.75rem] font-medium font-sans cursor-pointer">Clear Completed</p>
+        <p onClick={handleClearCompleted} className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>Clear Completed</p>
       </div>
     </div>
   )
