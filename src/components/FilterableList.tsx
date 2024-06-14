@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import type { Todo } from '@/providers/TodoProvider'
-
 import { cn } from '@/libs/utils'
 
 export type TabState = "All" | "Active" | "Completed"
