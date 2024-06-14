@@ -38,26 +38,26 @@ const defaultTodos: Todo[] = [{
 
 const reducer = (state: Todo[], action: Actions): Todo[] => {
     switch (action.type) {
-        case "create_todo":
+        case "create_todo": // create a new todo
             return [action.payload, ...state];
-        case "remove_todo":
+        case "remove_todo": // remove todo when click on X icon
             return state.filter((todos) => todos.id !== action.payload);
-        case "update_todo": {
-            const currentState = [...state];
-            const todoIndex = currentState.findIndex((todo) => todo.id === action.payload);
-            currentState[todoIndex] = {
-                ...currentState[todoIndex],
-                isCompleted: !currentState[todoIndex].isCompleted,
+        case "update_todo": // modify isCompleted state in storage when clicked the rounded toggler button  
+            {
+                const currentState = [...state];
+                const todoIndex = currentState.findIndex((todo) => todo.id === action.payload);
+                currentState[todoIndex] = {
+                    ...currentState[todoIndex],
+                    isCompleted: !currentState[todoIndex].isCompleted,
+                }
+                return currentState;
             }
-            return currentState;
-        }
-        case "reorder": 
-                return action.payload
+        case "reorder": // handle drag and drop feature  
+            return action.payload
         default:
             return state;
     }
 }
-
 
 const TodoProviderContext = createContext<TodoProviderState>({ todos: defaultTodos, dispatcher: () => null })
 

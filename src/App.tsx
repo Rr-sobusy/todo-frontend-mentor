@@ -2,6 +2,8 @@ import { useMediaQuery } from 'react-responsive'
 import LayoutWrapper from './components/LayoutWrapper'
 import MainContainer from './components/MainContainer'
 
+import type { Todo } from './providers/TodoProvider'
+
 // utils
 import { generateRandomId } from './libs/utils'
 
@@ -9,6 +11,8 @@ import { generateRandomId } from './libs/utils'
 import { useTheme } from './providers/ThemeProvider'
 import { useTodos } from './providers/TodoProvider'
 import { useState } from 'react'
+
+const randomIdlength = 7;
 
 function App() {
   const { theme, setTheme } = useTheme();
@@ -40,8 +44,8 @@ function App() {
 
   const handleSubmitTodo = () => {
     if (inputtedText) {
-      const payload = {
-        id: generateRandomId({ length: 7 }),
+      const payload: Todo = {
+        id: generateRandomId({ length: randomIdlength }),
         todoTitle: inputtedText,
         isCompleted: false
       }
@@ -50,7 +54,7 @@ function App() {
     }
   }
 
-  const handleReorder = (newTodoListOrder: any) => {
+  const handleReorder = (newTodoListOrder: Todo[]) => {
     todos.dispatcher({ type: "reorder", payload: newTodoListOrder })
   }
 
