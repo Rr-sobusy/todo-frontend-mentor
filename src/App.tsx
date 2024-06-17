@@ -42,6 +42,7 @@ function App() {
     todos.dispatcher({ type: "remove_todo", payload: todoId });
   }
 
+  // when pressed enter in the keyboard and input != null
   const handleSubmitTodo = () => {
     if (inputtedText) {
       const payload: Todo = {
