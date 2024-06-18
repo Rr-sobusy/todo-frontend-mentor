@@ -83,12 +83,20 @@ const MainContainer = (props: MainContainerProps) => {
         </Reorder.Group>
       </SimpleBar>
       <div className={`h-12 px-4 flex justify-between items-center rounded-b-md ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
-        <p className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>5 items remaining</p>
+        <p className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>{`${todos.filter((todo)=> !todo.isCompleted).length} task remaining`}</p>
         {
           !isPhone && <FilterableList isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         }
-        <p onClick={handleClearCompleted} className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>Clear Completed</p>
+        <p onClick={handleClearCompleted} className={`text-[.75rem] cursor-pointer font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>Clear Completed</p>
       </div>
+
+      {
+        isPhone && <div className={`h-12 px-4 mt-5 flex justify-center items-center rounded-md ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
+          {
+            <FilterableList className="" isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+          }
+        </div>
+      }
     </div>
   )
 }

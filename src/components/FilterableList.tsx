@@ -16,7 +16,7 @@ const FilterableList = ({ className, tabs =  [ ] ,selectedTab, setSelectedTab, i
             tabs.map((v) => {
                 const activeTab = selectedTab === v ? 'text-blue-700' : isDarkMode ?  'text-background' : 'text-foreground'
                 return (
-                    <li onClick={() => setSelectedTab(v)} className={cn(`font-sans text-[.75rem] font-medium cursor-pointer ${activeTab}`, className)}>{v}</li>
+                    <li key={v} onClick={() => setSelectedTab(v)} className={cn(`font-sans text-[.75rem] font-medium cursor-pointer ${activeTab}`, className)}>{v}</li>
                 )
             })
         }
