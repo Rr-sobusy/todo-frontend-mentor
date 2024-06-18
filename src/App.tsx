@@ -27,17 +27,20 @@ function App() {
     theme === "dark" ? setTheme("light") : setTheme("dark")
   }
 
+  // invoked every key stroke in input element
   const handleInputChange = (inputtedString: string) => {
     setInputtedText(inputtedString);
   }
 
-  const handleUpdateTodo = (todo: string) => {
+  // toggle isCompleted to !isCompleted when clicked on circled button
+  const handleUpdateTodo = (todoId: string) => {
     todos.dispatcher({
       type: "update_todo",
-      payload: todo
+      payload: todoId
     })
   }
 
+  // remove current todo when clicked on x icon
   const handleRemoveTodo = (todoId: string) => {
     todos.dispatcher({ type: "remove_todo", payload: todoId });
   }
@@ -55,10 +58,12 @@ function App() {
     }
   }
 
+  // clear all completed todos when clicked on Clear Completed button
   const handleClearCompleted = () => {
         todos.dispatcher({type : "clear_completed"})
   }
 
+  // Reorder todos by drag n dropping
   const handleReorder = (newTodoListOrder: Todo[]) => {
     todos.dispatcher({ type: "reorder", payload: newTodoListOrder })
   }
