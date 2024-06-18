@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/Rr-sobusy/todo-frontend-mentor">
- Pokedex built using Nextjs and pokeapi.co 
+ Todo App
   </a>
   <br />
 </h1>
