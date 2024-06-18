@@ -58,7 +58,7 @@ const MainContainer = (props: MainContainerProps) => {
         }} placeholder='Enter new todo. . .' className={`absolute font-sans tracking-wide text-sm font-medium outline-none rounded-md left-0 h-full w-full pl-12 pr-4 z-10 top-0 ${isDarkMode ? 'bg-foregroundAccent text-white outline-[1px]' : 'bg-backgroundAccent text-foreground'}`} type="text" />
       </div>
 
-      <SimpleBar className={`rounded-md w-full md:h-[330px] h-[450px] mt-5 ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
+      <SimpleBar className={`rounded-md w-full md:h-[330px] h-[50vh] mt-5 ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
         <Reorder.Group values={todos} onReorder={handleReorder}>
           {
             todos.map((todo) => {
