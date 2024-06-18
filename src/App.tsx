@@ -69,7 +69,6 @@ function App() {
   }
 
   return (
-    <>
       <LayoutWrapper
         isPhone={isPhone}
         isDarkMode={isDarkMode}>
@@ -86,7 +85,6 @@ function App() {
           isDarkMode={isDarkMode}
           toggleTheme={toggleTheme} />
       </LayoutWrapper>
-    </>
   )
 }
 
