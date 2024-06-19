@@ -7,10 +7,11 @@ export default {
   theme: {
     extend: {
       colors : {
-         background : "#FAFAFA",
-         backgroundAccent: "#FFFFFF",
-         foreground : "#272727",
-         foregroundAccent: "#25273C"
+         background : "rgb(var(--background))",
+         foreground : "rgb(var(--foreground))",
+         backgroundAccent: "rgb(var(--background-accent))",
+         primary : "rgb(var(--primary))",
+         border : "rgb(var(--border))"
       }
     },
   },

@@ -45,20 +45,24 @@ const MainContainer = (props: MainContainerProps) => {
 
       {/* **** Header ***** */}
       <div className="flex items-center justify-between">
-        <h2 className={`font-semibold text-4xl text-slate-100 tracking-wider`}>TODO</h2>
+        <h2 className="font-semibold text-4xl text-slate-100 tracking-wider">TODO</h2>
         <img onClick={toggleTheme} className="cursor-pointer w-7 h-7" src={Icon} alt="" />
       </div>
 
       {/******** Add todo input ****** */}
-      <div className={`h-12 mt-5 pl-4 flex relative gap-3 items-center rounded-md`}>
-        <div className={`h-6 w-6 rounded-full absolute z-20 border ${isDarkMode ? 'border-slate-700' : 'border-slate-200'}`}></div>
-        <input value={inputtedText} onChange={(event) => handleInputChange(event.target.value)} onKeyDown={(event) => {
-          if (event.key === "Enter")
-            handleSubmitTodo();
-        }} placeholder='Enter new todo. . .' className={`absolute font-sans tracking-wide text-sm font-medium outline-none rounded-md left-0 h-full w-full pl-12 pr-4 z-10 top-0 ${isDarkMode ? 'bg-foregroundAccent text-white outline-[1px]' : 'bg-backgroundAccent text-foreground'}`} type="text" />
+      <div className="h-12 mt-5 pl-4 flex relative gap-3 items-center rounded-md">
+        <div className="h-6 w-6 rounded-full absolute z-20 border border-border"></div>
+        <input value={inputtedText}
+          onChange={(event) => handleInputChange(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter")
+              handleSubmitTodo();
+          }}
+          placeholder='Enter new todo. . .'
+          className="absolute font-sans tracking-wide text-sm font-medium outline-none rounded-md left-0 h-full w-full pl-12 pr-4 z-10 top-0 bg-backgroundAccent text-foreground" type="text" />
       </div>
 
-      <SimpleBar className={`rounded-md w-full md:h-[330px] h-[50vh] mt-5 ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
+      <SimpleBar className="rounded-md w-full md:h-[330px] h-[50vh] mt-5 bg-backgroundAccent">
         <Reorder.Group values={todos} onReorder={handleReorder}>
           {
             todos.map((todo) => {
@@ -67,13 +71,13 @@ const MainContainer = (props: MainContainerProps) => {
               const filterable = useFilterable({ selectedTab, isCompleted: todo.isCompleted })
               return (
                 <Reorder.Item key={todo.id} value={todo}>
-                  <div className={`h-12 flex gap-3 ${filterable && 'hidden'} text-sm font-medium font-sans items-center border-b px-3 ${isDarkMode ? 'text-background border-slate-600' : 'text-foreground border-slate-200'}`}>
-                    <div onClick={() => handleUpdateTodo(todo.id)} className={`h-5 w-5 rounded-full cursor-pointer flex justify-center items-center ${isDarkMode ? 'border border-slate-700' : 'border border-slate-200'} ${todo.isCompleted && 'bg-gradient-to-b'} from-blue-200 to-indigo-600`}>
+                  <div className={`h-12 flex gap-3 text-sm font-medium font-sans items-center border-b px-3 text-foreground border-border ${filterable && 'hidden'}`}>
+                    <div onClick={() => handleUpdateTodo(todo.id)} className={`h-5 w-5 rounded-full cursor-pointer flex justify-center items-center border border-border ${todo.isCompleted && 'bg-gradient-to-b'} from-blue-200 to-indigo-600`}>
                       {
                         todo.isCompleted && <img width={9} height={9} className='object-contain' src={Check} alt="" />
                       }
                     </div>
-                    <p className={`${todo.isCompleted && isDarkMode ? '__todo-completed-typography after:border-background' : todo.isCompleted && !isDarkMode ? '__todo-completed-typography after:border-foreground' : undefined}`}>{todo.todoTitle}</p>
+                    <p className={`${todo.isCompleted ? '__todo-completed-typography after:border-foreground' : 'after:border-foreground'}`}>{todo.todoTitle}</p>
                     <img onClick={() => handleRemoveTodo(todo.id)} width={11} height={11} className="absolute cursor-pointer right-5" src={Close} alt="" />
                   </div>
                 </Reorder.Item>
@@ -82,16 +86,16 @@ const MainContainer = (props: MainContainerProps) => {
           }
         </Reorder.Group>
       </SimpleBar>
-      <div className={`h-12 px-4 flex justify-between items-center rounded-b-md ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
-        <p className={`text-[.75rem] font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>{`${todos.filter((todo)=> !todo.isCompleted).length} task remaining`}</p>
+      <div className="h-12 px-4 flex justify-between items-center rounded-b-md bg-backgroundAccent">
+        <p className="text-[.75rem] font-medium font-sans text-foreground">{`${todos.filter((todo)=> !todo.isCompleted).length} task remaining`}</p>
         {
           !isPhone && <FilterableList isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         }
-        <p onClick={handleClearCompleted} className={`text-[.75rem] cursor-pointer font-medium font-sans ${isDarkMode ? 'text-background' : 'text-foreground'}`}>Clear Completed</p>
+        <p onClick={handleClearCompleted} className="text-[.75rem] cursor-pointer font-medium font-sans text-foreground">Clear Completed</p>
       </div>
 
       {
-        isPhone && <div className={`h-12 px-4 mt-5 flex justify-center items-center rounded-md ${isDarkMode ? 'bg-foregroundAccent' : 'bg-backgroundAccent'}`}>
+        isPhone && <div className="h-12 px-4 mt-5 flex justify-center items-center rounded-md bg-backgroundAccent">
           {
             <FilterableList className="" isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
           }

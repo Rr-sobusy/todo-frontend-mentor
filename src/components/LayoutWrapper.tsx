@@ -29,10 +29,10 @@ const LayoutWrapper = ({ children, isDarkMode, isPhone, className, ...props }: W
     }
     return (
         <main {...props}
-            className={cn(`flex flex-col items-center min-h-screen ${isDarkMode ? 'bg-foreground' : 'bg-background'}`, className)}>
+            className={cn(`flex flex-col items-center min-h-screen bg-background`, className)}>
             <img className="w-screen h-1/2" src={backGround()} alt="" />
             {children}
-            <p className={`absolute font-sans text-sm bottom-1 right-3 ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>Coded by Rex Hernandez <span>
+            <p className={`absolute font-sans text-sm bottom-1 right-3 text-foreground`}>Coded by Rex Hernandez <span>
                 <a target="_blank" className="text-blue-400 underline" href="https://github.com/Rr-sobusy/todo-frontend-mentor/tree/master">src code</a></span></p>
         </main>
     )

@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+
+    :root {      
+        --background : 250,250,250;
+        --foreground:  39,39,39;
+        --background-accent: 255, 255, 255;
+
+        --primary :  51, 65, 85;
+
+        --border : 226,232,240;
+    }
+
+    .dark {
+        --background : 39,39,39;
+        --foreground: 250,250,250;
+        --background-accent: 37, 39, 60;
+
+        --primary:  226,232,240;
+
+        --border : 51, 65, 85;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  Utils for applying a dashline in isCompleted todo */
 .__todo-completed-typography::after {
     @apply absolute content-[''] left-0 top-[50%] right-0 border-[.3px]

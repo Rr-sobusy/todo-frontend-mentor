@@ -14,9 +14,9 @@ const FilterableList = ({ className, tabs =  [ ] ,selectedTab, setSelectedTab, i
     return <ul className="flex gap-3">
         {
             tabs.map((v) => {
-                const activeTab = selectedTab === v ? 'text-blue-700' : isDarkMode ?  'text-background' : 'text-foreground'
+                const activeTab = selectedTab === v && 'text-blue-700';
                 return (
-                    <li key={v} onClick={() => setSelectedTab(v)} className={cn(`font-sans text-[.75rem] font-medium cursor-pointer ${activeTab}`, className)}>{v}</li>
+                    <li key={v} onClick={() => setSelectedTab(v)} className={cn(`font-sans text-[.75rem] font-medium cursor-pointer text-foreground ${activeTab}`, className)}>{v}</li>
                 )
             })
         }
