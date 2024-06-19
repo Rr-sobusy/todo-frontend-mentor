@@ -4,13 +4,12 @@ export type TabState = "All" | "Active" | "Completed"
 
 type FilterableProps = { 
     className?: string
-    isDarkMode: boolean
     tabs: TabState[]
     selectedTab: TabState
     setSelectedTab: (tab: TabState) => void
 }
 
-const FilterableList = ({ className, tabs =  [ ] ,selectedTab, setSelectedTab, isDarkMode }: FilterableProps) => {
+const FilterableList = ({ className, tabs =  [ ] ,selectedTab, setSelectedTab }: FilterableProps) => {
     return <ul className="flex gap-3">
         {
             tabs.map((v) => {

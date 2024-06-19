@@ -89,7 +89,7 @@ const MainContainer = (props: MainContainerProps) => {
       <div className="h-12 px-4 flex justify-between items-center rounded-b-md bg-backgroundAccent">
         <p className="text-[.75rem] font-medium font-sans text-foreground">{`${todos.filter((todo)=> !todo.isCompleted).length} task remaining`}</p>
         {
-          !isPhone && <FilterableList isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+          !isPhone && <FilterableList tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         }
         <p onClick={handleClearCompleted} className="text-[.75rem] cursor-pointer font-medium font-sans text-foreground">Clear Completed</p>
       </div>
@@ -97,7 +97,7 @@ const MainContainer = (props: MainContainerProps) => {
       {
         isPhone && <div className="h-12 px-4 mt-5 flex justify-center items-center rounded-md bg-backgroundAccent">
           {
-            <FilterableList className="" isDarkMode={isDarkMode} tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+            <FilterableList tabs={Tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
           }
         </div>
       }
